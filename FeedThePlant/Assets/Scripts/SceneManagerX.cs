@@ -34,5 +34,6 @@ public class SceneManagerX : MonoBehaviour
     public void SelectCharacter()
     {
         clickSound.Play();
+        SceneManager.LoadScene(2);
     }
 }

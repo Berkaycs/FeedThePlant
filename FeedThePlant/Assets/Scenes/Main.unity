@@ -220,7 +220,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 637c50bbd4c1a814bb85244cd62f8507, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.445
+  m_Volume: 0.344
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1391,6 +1391,7 @@ MonoBehaviour:
   sun: {fileID: 8300000, guid: eeb4531f3e6d6f5499f3ca1efa445eec, type: 3}
   crush: {fileID: 8300000, guid: cb363d7647a93b14694b343987a96222, type: 3}
   fall: {fileID: 8300000, guid: 1e4d2804062b03843922044ac668a75c, type: 3}
+  gameover: {fileID: 8300000, guid: 6956ec3403f7ee24190568ce522d2543, type: 3}
 --- !u!4 &606952711
 Transform:
   m_ObjectHideFlags: 0
@@ -2226,7 +2227,6 @@ GameObject:
   - component: {fileID: 1874796208}
   - component: {fileID: 1874796212}
   - component: {fileID: 1874796211}
-  - component: {fileID: 1874796213}
   - component: {fileID: 1874796214}
   m_Layer: 0
   m_Name: character_1
@@ -2374,27 +2374,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!95 &1874796213
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1874796207}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: edf8a921e0be5a74cb513af2b2e90852, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1874796214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2408,6 +2387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screen: {fileID: 1159530588}
+  characterDB: {fileID: 11400000, guid: aabae71e49ca4714bbec7da049b490c4, type: 2}
+  spriteRenderer: {fileID: 1874796208}
 --- !u!1 &1881871895
 GameObject:
   m_ObjectHideFlags: 0

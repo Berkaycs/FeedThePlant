@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +11,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRb;
     public GameOver screen;
 
+    public CharacterDatabase characterDB;
+    public SpriteRenderer spriteRenderer;
+
+    private int selectedOption = 0;
+
     private float speed = 10;
 
     // Start is called before the first frame update
@@ -19,6 +25,19 @@ public class PlayerController : MonoBehaviour
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         playerRb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        // Copying from Character Manager
+        if (!PlayerPrefs.HasKey("selectedOption"))
+        {
+            selectedOption = 0;
+        }
+
+        else
+        {
+            Load();
+        }
+
+        UpdateCharacter(selectedOption);
     }
 
     // Update is called once per frame
@@ -118,6 +137,18 @@ public class PlayerController : MonoBehaviour
             screen.GameOverScreen();
             audioManager.PlayGameOver();
         }
+    }
+
+    // Copying from Character Manager
+    private void UpdateCharacter(int selectedOption)
+    {
+        Character character = characterDB.GetCharacter(selectedOption);
+        spriteRenderer.sprite = character.characterSprite;
+    }
+    // Copying from Character Manager
+    private void Load()
+    {
+        selectedOption = PlayerPrefs.GetInt("selectedOption");
     }
 
 }
