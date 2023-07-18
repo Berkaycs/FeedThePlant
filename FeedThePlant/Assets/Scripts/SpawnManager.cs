@@ -10,7 +10,10 @@ public class SpawnManager : MonoBehaviour
     private float randomX;
     private float yPos;
     private float startDelay = 1;
-    private float spawnRate = 1.5f;
+    private float spawnRate = 1f;
+
+    public GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,10 +28,13 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnObstacle()
     {
-        obstacleIndex = Random.Range(0, obstacles.Length);
-        randomX = Random.Range(-2.5f,2.5f);
-        yPos = 5;
-        spawnPos = new Vector3(randomX, yPos, -0.1f);
-        Instantiate(obstacles[obstacleIndex], spawnPos, obstacles[obstacleIndex].transform.rotation);
+        if (gameManager.gameOver == false)
+        {
+            obstacleIndex = Random.Range(0, obstacles.Length);
+            randomX = Random.Range(-2.5f, 2.5f);
+            yPos = 5;
+            spawnPos = new Vector3(randomX, yPos, -0.1f);
+            Instantiate(obstacles[obstacleIndex], spawnPos, obstacles[obstacleIndex].transform.rotation);
+        }
     }
 }

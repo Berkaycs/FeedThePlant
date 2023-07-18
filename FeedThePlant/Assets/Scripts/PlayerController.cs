@@ -4,23 +4,32 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float horizontalInput;
+    private GameManager gameManager;
+    private Animator animator;
+    private AudioManager audioManager;
     private Rigidbody2D playerRb;
+    public GameOver screen;
+
     private float speed = 10;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         playerRb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         Move1();
+        /*
         Move2();
         Move3();
         Move4();
+        */
     }
 
     // First way to move
@@ -41,7 +50,7 @@ public class PlayerController : MonoBehaviour
             playerRb.velocity = new Vector2 (0, 0);
         }
     }
-
+    /*
     // Second way to move
     void Move2()
     {
@@ -81,6 +90,33 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKey(KeyCode.C))
         {
             transform.Translate(Vector2.right * Time.deltaTime * speed);
+        }
+    }
+    */
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Sun"))
+        {
+            Destroy(collision.gameObject);
+            audioManager.PlaySun();
+            gameManager.AddScore(5);
+        }
+
+        else if (collision.gameObject.CompareTag("Water"))
+        {
+            Destroy(collision.gameObject);
+            audioManager.PlayWater();
+            gameManager.AddScore(10);
+        }
+
+        else if (collision.gameObject.CompareTag("Rock"))
+        {
+            audioManager.PlayCrush();
+            Destroy(gameObject);
+            gameManager.gameOver = true;
+            screen.GameOverScreen();
+            audioManager.PlayGameOver();
         }
     }
 
